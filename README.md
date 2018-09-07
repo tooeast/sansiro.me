@@ -1,6 +1,10 @@
-# here
+# 简易 Vue 博客
 
-> A Vue.js project
+使用 Vue ＋ axios。由于很轻，没有使用 Vuex。
+
+支持 Markdown 语法转换，支持留言（留言并不支持 Markdown）！
+
+线上地址  [SANSIRO.ME](https://sansiro.me)
 
 ## Build Setup
 
