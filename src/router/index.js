@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import article from '@/client/article'
-import home from '@/client/home'
-import list from '@/client/list'
-import about from '@/client/about'
-import bbs from '@/client/bbs'
-import error from '@/client/404'
+Vue.use(Router);
 
-Vue.use(Router)
+import home from '@/client/Home'
+import article from '@/client/Article'
+import error from '@/client/404'
+import about from '@/client/About'
+import board from '@/client/Board'
 
 export default new Router({
   mode: 'history',
@@ -18,27 +17,24 @@ export default new Router({
       component: error
     },
     {
-      path: '/',
-      redirect: '/home'
-    },
-    {
       path: '/home',
-      component: home
+      redirect: '/'
     },
     {
-      path: '/list',
-      component: list
+      path: '/',
+      component: home
     },
     {
       path: '/about',
       component: about
     },
     {
-      path: '/msgboard',
-      component: bbs
+      path: '/msgbd',
+      component: board
     },
     {
       path: '/article/:name',
+      name: 'article',
       component: article
     }
   ]

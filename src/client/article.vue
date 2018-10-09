@@ -1,79 +1,69 @@
 <template>
-  <div class="article-page">
-    <div class="article" v-show="!isLoading">
-      <p class="title" v-text="title"></p>
-      <p class="time" v-text="time"></p>
-      <div class="content markdown-body" v-html="compiledMarkdown"></div>
+  <section class="article-area">
+    <div class="article">
+      <Header :title="article.title"></Header>
+      <div class="my-info">
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3668554427,3084213941&fm=200&gp=0.jpg" alt="">
+        <p>{{ calcArticleTime(article.time) }}</p>
+      </div>
+      <div class="main-area">
+        <loading class="article-loading" v-if="!showArticle"></loading>
+        <transition name="fade">
+          <div class="content article-body markdown-body" v-html="complieMarkeDown" v-show="showArticle"></div>
+        </transition>
+      </div>
     </div>
-    <div v-show="isLoading" class="loading">
-      <i></i><i></i><i></i><i></i>
-    </div>
-    
-    <div class="bottom-info">
-
-    </div>
-
-    <div class="bbs-area">
-      <msg-area :typeid="this.$route.params.name"></msg-area>
-    </div>
-  </div>
+    <div class="other"></div>
+  </section>
 </template>
 
 <script>
-import msgArea from '@/components/message';
-import axios from 'axios';
-import marked from 'marked';
-import hljs from '../../static/app/js/highlight.min.js';
+import Header from '@/components/Header'
+import Loading from '@/components/Loading'
+import {calcTime, htmlDecode, setLazyLoadImg, posTop} from '@/utils/public'
+import hljs from '@/utils/highlight'
+import marked from '@/utils/marked'
 
 export default {
-  name: 'article',
+  name: 'articlePage',
   components: {
-    msgArea: msgArea
+    Header, Loading
   },
   data () {
     return {
-      id: '',
-      title: '',
-      time: '',
-      content: '',
-      isLoading: true,
-      input: '',
+      showArticle: false,
+      article: window.articleInfo || {}
     }
   },
   mounted () {
-    document.documentElement.scrollTop = window.pageYOffset = document.body.scrollTop = 0;
-
-    this.getArticleInfo(this.$route.params.name);
+    posTop();
+    setLazyLoadImg();
 
     this.setMarkDown();
+    this.getArticleInfo(this.$route.params.name);
   },
   computed: {
-    compiledMarkdown () {
-      return marked(this.content, {
+    complieMarkeDown () {
+      return marked(htmlDecode(this.article.content), {
         sanitize: true
       })
     }
   },
   methods: {
-    getMoon (hour) {
-      var res;
-      if(hour >= 0 && hour < 6) {
-        res = "凌晨";
-      } else if(hour < 9) {
-        res = "早晨";
-      } else if(hour < 11) {
-        res = "上午";
-      } else if(hour < 15) {
-        res = "中午";
-      } else if(hour < 19) {
-        res = "下午";
-      } else {
-        res = "晚上";
-      }
+    getArticleInfo (name) {
+      this.$http.get(`https://sansiro.me/topic.php?name=article&index=${name}`)
+        .then(data => {
+          if(data.data.code == 0) {
+            this.article = data.data.data;
 
-      res += Number(hour) > 13 ? (hour - 12) : hour;
-
-      return res;
+            this.showArticle = true;
+          } else {
+            this.$router.push('/error')
+          }
+        })
+    },
+    calcArticleTime (time) {
+      return calcTime(time);
     },
     setMarkDown () {
       marked.setOptions({
@@ -89,90 +79,106 @@ export default {
           return hljs.highlightAuto(code).value
         }
       });
-    },
-    getArticleInfo (articlename) {
-      var _this = this;
-      this.isLoading = true;
-
-      axios.get('/topic.php?name=article', {
-        params: {
-          index: articlename
-        }
-      }).then(function(data) {
-
-        var res = data.data;
-
-        if(res.code == 0) {
-          _this.title = res.data.title;
-          _this.time = _this.calcTime(res.data.time);
-          _this.content = _this.htmlDecodeByRegExp(res.data.content);
-        } else {
-          _this.$router.push('/404')
-        }
-
-        _this.isLoading = false;
-      });
-    },
-    calcTime (time) {
-      var str = String(time).replace(/-/g,"/");
-      console.log(str);
-
-      var newSS = new Date(str);
-
-      var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Seq', 'Oct', 'Nov', 'Dec'];
-
-      var res = month[newSS.getMonth()] + "." + newSS.getDate() + " " + newSS.getFullYear() + "\t" + this.getMoon(newSS.getHours()) + ":" + ('0' + newSS.getMinutes()).slice(-2);
-
-      return res;
-    },
-    htmlDecodeByRegExp (str){  
-      var s = "";
-      if(str.length == 0) return "";
-      s = str.replace(/&amp;/g,"&");
-      s = s.replace(/&lt;/g,"<");
-      s = s.replace(/&gt;/g,">");
-      s = s.replace(/&nbsp;/g," ");
-      s = s.replace(/&#39;/g,"\'");
-      s = s.replace(/&quot;/g,"\"");
-      return s;  
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="css" scoped>
+@import url('~@/assets/mixin/markdown.css');
+</style>
 
-@import url("../../static/app/css/article.css");
+<style lang="scss" scoped>
+@media screen and (max-width: 480px) {
+  .article-area {
+    padding: 0;
 
-.article {
-  margin-top: 20px;
-  font-size: 17px;
-  font-family: -apple-system,PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Helvetica Neue,sans-serif;
+    .article {
+      .my-info {
+        padding: 0 20px;
+      }
+    }
+
+    .content {
+      padding: 20px;
+    }
+  }
 }
-.title {
-  margin: 11px 0;
-  font-size: 26px;
-  line-height: 1;
-  text-decoration: none;
-  color: #2c3e50;
-  font-weight: bold;
+@media screen and (min-width: 481px) {
+  .article-area {
+    padding-top: 170px;
+
+    .article {
+      margin: 0 8px;
+
+      .my-info {
+        padding: 0 30px;
+      }
+    }
+
+    .content {
+      padding: 30px;
+    }
+  }
 }
-.time {
-  font-size: 12px;
-  line-height: 2;
-  margin-bottom: 13px;
-  font-weight: bold;
-}
-.bbs-area {
-  /* width: 92%; */
-  margin: 20px auto 0;
-}
-.content {
-  line-height: 1.5;
-  text-align: justify
-}
-.bottom-info {
-  height: 100px;
+
+.article-area {
+  max-width: 100%;
+  width: 900px;
+  margin: 0 auto;
+
+  .article {
+    background-color: #fff;
+    @extend %box;
+
+    .my-info {
+      display: flex;
+      // padding: 0 30px;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+
+      img {
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 2px 3px 6px 0 rgba(0, 0, 0, 0.16)
+      }
+
+      p {
+        font-weight: 450;
+        font-size: 16px;
+        text-shadow: 1px 1px 8px #bababa;
+      }
+    }
+
+    .main-area {
+      min-height: 400px;
+
+      .article-loading {
+        margin: 40px 0;
+      }
+
+      .fade-enter-active, .fade-leave-active{
+        transition: opacity 1s;
+      }
+      .fade-enter, .fade-leave-to {           
+        opacity: 0;
+      }
+    }
+  }
+
+  .content {
+    // min-height: 318px;
+    text-align: justify;
+    // padding: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .other {
+    height: 100px;
+  }
 }
 </style>

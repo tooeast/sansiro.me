@@ -1,14 +1,17 @@
-# 简易 Vue 博客
+# 简单的博客系统
 
-使用 Vue ＋ axios。由于很轻，没有使用 Vuex。
+基于Vue开发的简易博客系统
 
-支持 Markdown 语法转换，支持留言（留言并不支持 Markdown）！
+支持留言，支持Markdown格式，代码高亮，哈西头像。
 
-线上地址  [SANSIRO.ME](https://sansiro.me)
 
 ## Build Setup
 
 ``` bash
+# clone project
+
+git clone git@github.com:sansiro-me/my-blog.git 
+
 # install dependencies
 npm install
 
@@ -22,4 +25,4 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+线上地址 [SANSIRO.ME](https://sansiro.me)
