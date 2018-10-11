@@ -112,15 +112,14 @@ export default {
 
             this.content = '';
             this.isLoading = false;
-            // this.isclick = false;
 
             this.setCatch({ name: this.name, email: this.email, avatar: this.avatarUrl});
 
-            this.$toast({
-              msg: '留言成功',
+            this.$side({
               type: 'success',
-              duration: 1100
-            });
+              msg: '留言成功！',
+              duration: 30000
+            })
           }
         })
         .catch(data => {
@@ -155,8 +154,6 @@ export default {
       this.oldName = this.name;
     },
     getAvatarByName () {
-      console.log("hahahaha");
-
       if(this.oldName.length > 0) {
         if(this.name == this.oldName) {
           return;

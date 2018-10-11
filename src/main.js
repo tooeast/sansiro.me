@@ -5,10 +5,10 @@ import App from './client/App'
 import router from './router'
 import axios from 'axios'
 
-import vdialog from './libs/vdialog'
+import vdialog from 'vue-toast-confirm'
 
 // Vue.prototype.$dialog = dialog
-Vue.use(vdialog, {title: '我的弹窗！'});
+Vue.use(vdialog)
 
 Vue.prototype.$http = axios;
 
