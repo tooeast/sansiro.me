@@ -4,7 +4,7 @@
       <img :src="todo.avatar" alt="">
     </div>
     <div class="right">
-      <p class="info"><a href="javascript:;" @click="replayMsg(todo.name)" class="weight" title="回复TA">{{ todo.name }}</a>&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ transTime(todo.time) }}</p>
+      <p class="info"><a href="javascript:;" @click="replayMsg(decodeInfo(todo.name))" class="weight" title="回复TA">{{ decodeInfo(todo.name) }}</a>&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ transTime(todo.time) }}</p>
       <div class="content markdown-body" v-html="complieMarkeDown"></div>
     </div>
   </div>
@@ -31,6 +31,9 @@ export default {
     this.setMarkDown();
   },
   methods: {
+    decodeInfo (str) {
+      return htmlDecode(str)
+    },
     transTime (time) {
       return calcTime(time, 'small');
     },

@@ -46,6 +46,18 @@ let htmlDecode = (str) => {
   return s;  
 }
 
+let htmlEncode = (str) => {
+  var s = "";
+  if(str.length == 0) return "";
+  s = str.replace(/&/g,"&amp;");
+  s = s.replace(/</g,"&lt;");
+  s = s.replace(/>/g,"&gt;");
+  s = s.replace(/ /g,"&nbsp;");
+  s = s.replace(/\'/g,"&#39;");
+  s = s.replace(/\"/g,"&quot;");
+  return s;
+}
+
 let setLazyLoadImg = () => {
   let windowHeight = window.innerHeight;
   let i, scroll, imgs, imgHeight;
@@ -76,5 +88,5 @@ let trim = str => {
   return str.replace(/(^\s+)|(\s+$)/g, '');
 }
 
-module.exports = {calcTime, htmlDecode, setLazyLoadImg, posTop, trim};
+module.exports = {calcTime, htmlDecode, setLazyLoadImg, posTop, trim, htmlEncode};
 

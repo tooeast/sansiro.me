@@ -3,7 +3,7 @@
     <div class="mask" @click="hideSideMenu"></div>
     <div class="side-area">
       <div class="header">
-        <img src="@/assets/images/bg1.jpg" alt="">
+        <img src="https://sansiro.me/images/default-head.jpg" alt="">
         <p>sansiro.me@outlook.com</p>
       </div>
       <div class="main">

@@ -3,7 +3,7 @@
     <div class="area">
       <Header :title="msg"></Header>
       <div class="my-info">
-        <img src="@/assets/images/bg1.jpg" alt="">
+        <img src="https://sansiro.me/images/default-head.jpg" alt="">
         <p>SANSIRO.ME</p>
       </div>
     </div>

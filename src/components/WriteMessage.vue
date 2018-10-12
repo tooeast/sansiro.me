@@ -21,7 +21,7 @@
 
 <script>
 import qs from 'qs';
-import { trim } from '@/utils/public'
+import { trim, htmlEncode } from '@/utils/public'
 
 const CATCHKEY = 'MC2xhj18c1jGSA';
 
@@ -95,9 +95,9 @@ export default {
       this.isLoading = true;
 
       this.$http.post('https://sansiro.me/topic.php?name=message&op=save_message', qs.stringify({
-        msgcontent: this.content,
-        msgemail: this.email,
-        msgname: this.name,
+        msgcontent: htmlEncode(this.content),
+        msgemail: htmlEncode(this.email),
+        msgname: htmlEncode(this.name),
         msgavatar: this.avatarUrl
       }))
         .then(data => {
@@ -118,17 +118,17 @@ export default {
             this.$side({
               type: 'success',
               msg: '留言成功！',
-              duration: 30000
+              duration: 3000
             })
           }
         })
         .catch(data => {
           this.isLoading = false;
           
-          this.$toast({
+          this.$side({
             msg: '留言失败！',
             type: 'error',
-            duration: 1200
+            duration: 3000
           });
         })
     },

@@ -3,7 +3,7 @@
     <div class="article">
       <Header :title="article.title"></Header>
       <div class="my-info">
-        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3668554427,3084213941&fm=200&gp=0.jpg" alt="">
+        <img src="https://sansiro.me/images/default-head.jpg" alt="">
         <p>{{ calcArticleTime(article.time) }}</p>
       </div>
       <div class="main-area">
