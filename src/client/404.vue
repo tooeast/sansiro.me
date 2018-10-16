@@ -51,12 +51,12 @@ export default {
 
       &.num {
         margin-top: 30px;
-        font-size: 50px;
+        font-size: 40px;
         line-height: 70px;
       }
 
       &.info {
-        font-size: 30px;
+        font-size: 20px;
         line-height: 40px;
       }
     }
