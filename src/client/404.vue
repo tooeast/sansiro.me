@@ -2,7 +2,7 @@
   <section class="error-page">
     <div class="error">
       <p class="num">404 NOT FOUND</p>
-      <p class="info">糟糕！您访问的页面不存在</p>
+      <p class="info">糟糕！您访问的页面不存在了</p>
     </div>
     <div class="navigator">
       <router-link class="link icon-home" :to="{ path: '/' }">Home</router-link>
