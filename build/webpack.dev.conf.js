@@ -38,7 +38,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       ? { warnings: false, errors: true }
       : false,
     publicPath: config.dev.assetsPublicPath,
-    proxy: config.dev.proxyTable,
+    // proxy: config.dev.proxyTable,
+    proxy: {
+      '/api': {
+        target: 'http://api.sansiro.me',
+        changeOrigin: true,
+        // pathRewrite: {
+        //   '^/api': '/api'
+        // }
+      }
+    },
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,

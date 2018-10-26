@@ -29,8 +29,7 @@ export default {
       }
 
       this.loadmoreState = 1;
-      // this.$http.get(`https://sansiro.me/topic.php?name=message&op=loadmore&num=${this.loadnum}&id=bbs`)
-      this.$http.get(this.requestUri + this.loadnum)
+      this.$http.get(this.requestUri + "?num=" + this.loadnum)
         .then(data => {
           if(data.data.code == 0) {
             

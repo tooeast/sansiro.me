@@ -11,7 +11,7 @@
             <div class="list" v-if="msgList.length">
               <each-msg v-for="(todo, index) in msgList" v-bind:key="index" :todo="todo" v-on:replay="replayUser"></each-msg>
               
-              <load-more :requestUri="'https://sansiro.me/topic.php?name=message&op=loadmore&id=bbs&num='"  v-on:moreInfo="addToList"></load-more>
+              <load-more :requestUri="'/api/message/loadmore'"  v-on:moreInfo="addToList"></load-more>
             </div>
 
             <div class="nolist" v-else>
@@ -67,7 +67,7 @@ export default {
       this.msgList = [params, ...this.msgList];
     },
     getMessageBoardInfo () {
-      this.$http.get(`https://sansiro.me/topic.php?name=message&op=get_message&id=bbs`)
+      this.$http.get(`/api/message/get_message`)
         .then(data => {
           this.msgList = data.data;
 

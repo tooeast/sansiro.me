@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     getMyOwnInfo (name) {
-      this.$http.get(`https://sansiro.me/topic.php?name=about`)
+      this.$http.get(`/api/about`)
         .then(data => {
           if(data.data.code == 0) {
             this.title = data.data.data.title;

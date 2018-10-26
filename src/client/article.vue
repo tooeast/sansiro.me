@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     getArticleInfo (name) {
-      this.$http.get(`https://sansiro.me/topic.php?name=article&index=${name}`)
+      this.$http.get(`/api/article?index=${name}`)
         .then(data => {
           if(data.data.code == 0) {
             this.article = data.data.data;

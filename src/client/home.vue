@@ -14,7 +14,7 @@
       <div class="article-area" v-show="showList">
         <article-list v-for="(todo, index) in articleList" v-bind:key="index" :article="todo"></article-list>
 
-        <load-more class="home-more" :requestUri="'https://sansiro.me/topic.php?name=home&op=loadmore&num='" v-on:moreInfo="addToList"></load-more>
+        <load-more class="home-more" :requestUri="'/api/home/loadmore'" v-on:moreInfo="addToList"></load-more>
       </div>
     </transition>
 
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     getHomePageInfo() {
-      this.$http.get('https://sansiro.me/topic.php?name=home')
+      this.$http.get('/api/home')
         .then((data) => {
           this.articleList = data.data;
 

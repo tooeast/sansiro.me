@@ -94,7 +94,7 @@ export default {
 
       this.isLoading = true;
 
-      this.$http.post('https://sansiro.me/topic.php?name=message&op=save_message', qs.stringify({
+      this.$http.post('/api/message/save_message', qs.stringify({
         msgcontent: htmlEncode(this.content),
         msgemail: htmlEncode(this.email),
         msgname: htmlEncode(this.name),
