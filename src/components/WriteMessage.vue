@@ -9,7 +9,7 @@
         <input class="email" type="text" v-model="email" placeholder="email">
       </div>
       <div class="text">
-        <textarea :class="{ 'isclick' : isclick}" v-model="content" name="content" id="" cols="30" rows="10" placeholder="...Support Markdown" @focus="onFocusTextarea"></textarea>
+        <textarea :class="{ 'isclick' : isclick}" v-model="content" name="content" cols="30" rows="10" placeholder="...Support Markdown" @focus="onFocusTextarea"></textarea>
       </div>
       <div class="btn">
         <button :class="[canCommit ? 'can-click' : 'not-click']" @click="commitMsgToServer">commit</button>

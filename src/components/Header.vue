@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :style="'background-image:url(' + (img ? img : defaultImg) + ')'">
     <h3 class="title" v-text="title"></h3>
   </div>
 </template>
@@ -7,9 +7,21 @@
 <script>
 export default {
   name: 'areaTop',
-  props: [
-    'title'
-  ]
+  data () {
+    return {
+      defaultImg: '//cdn.sansiro.me/images/efc66fa6f7a2a3e63c9e7a2c01e6ef12-img2.png'
+    }
+  },
+  props: {
+    // 'title', 'img'
+    title: {
+      type: String
+    },
+    img: {
+      type: String,
+      default: this.defaultImg
+    }
+  }
 }
 </script>
 
@@ -22,7 +34,10 @@ export default {
   justify-content: flex-start;
   padding: 25px;
   box-sizing: border-box;
-  @include bgimg('~@/assets/images/img2.png');
+  // @include bgimg('~@/assets/images/img2.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 
   .title {
     // font-size: 34px;

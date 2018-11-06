@@ -1,7 +1,7 @@
 <template>
   <a href="javascript:;" class="article" @click="navigatorTo">
     <div class="title-area">
-      <img class="title-img" src="@/assets/images/img1.png" alt="">
+      <img class="title-img lazyload" src="" :data-src="article.headpic ? article.headpic : defaultImg" alt="">
       <h2 class="title" v-text="article.title"></h2>
     </div>
     <div class="article-content">
@@ -15,13 +15,21 @@
 </template>
 
 <script>
-import {calcTime} from '@/utils/public';
+import {calcTime, setLazyLoadImg} from '@/utils/public';
 
 export default {
   name: 'articleList',
+  data () {
+    return {
+      defaultImg: '//cdn.sansiro.me/images/1355c09d3b639fb215c7dcf5111da359-img1.png'
+    }
+  },
   props: [
     'article'
   ],
+  mounted () {
+    setLazyLoadImg();
+  },
   methods: {
     calcArticleTime (time) {
       return calcTime(time);
@@ -29,7 +37,8 @@ export default {
     navigatorTo () {
       window.articleInfo = {
         title: this.article.title,
-        time: this.article.time
+        time: this.article.time,
+        headpic: this.article.headpic
       }
       this.$router.push({
         name: 'article',
@@ -65,6 +74,7 @@ export default {
     height: 100px;
     padding-left: 20px;
     padding-bottom: 14px;
+    background-color: #eee;
     box-sizing: border-box;
     align-items: flex-end;
     justify-content: flex-start;

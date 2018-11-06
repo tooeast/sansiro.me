@@ -77,6 +77,8 @@ let setLazyLoadImg = () => {
     }
   }
 
+  load();
+
   window.addEventListener('scroll', load);      
 }
 

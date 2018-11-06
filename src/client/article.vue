@@ -1,7 +1,7 @@
 <template>
   <section class="article-area">
     <div class="article">
-      <Header :title="article.title"></Header>
+      <Header :title="article.title" :img="article.headpic"></Header>
       <div class="my-info">
         <img src="https://sansiro.me/images/default-head.jpg" alt="">
         <p>{{ calcArticleTime(article.time) }}</p>
