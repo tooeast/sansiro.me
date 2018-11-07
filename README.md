@@ -10,7 +10,7 @@
 ``` bash
 # clone project
 
-git clone git@github.com:sansiro-me/my-blog.git 
+git clone git@github.com:sansiro-me/sansiro.me.git 
 
 # install dependencies
 npm install
