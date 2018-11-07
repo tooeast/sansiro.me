@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div id="top"></div>
-    <div class="main-bg"></div>
+    <div class="main-bg">
+      <div class="bg-img"></div>
+    </div>
     <div class="main-area">
       <router-view class="main"></router-view>
       <Footer></Footer>
@@ -30,6 +32,7 @@ export default {
 }
 body {
   overflow-x: hidden;
+  -webkit-overflow-scrolling:touch;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -40,27 +43,23 @@ body {
   width: 100%;
   overflow-x: hidden;
 
-  #top {
-    position: absolute;
-    top: 0;
-    width: 0;
-    height: 0;
-  }
-
   .main {
     box-sizing: border-box;
   }
 
   .main-bg {
     position: fixed;
-    width: 120%;
-    height: 120%;
     left: 0;
     top: 0;
-    transform: translate(-10%, -10%);
-    @include bgimg('~@/assets/images/bg2.jpeg');
-    filter: blur(20px);
+    right: 0;
+    bottom: 0;
     z-index: -1;
+
+    .bg-img {
+      width: 100%;
+      height: 100%;
+      @include bgimg('~@/assets/images/mainbg.jpg');
+    }
   }
 
   .main-area {
