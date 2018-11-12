@@ -1,7 +1,6 @@
 <template>
-  <a href="javascript:;" class="article" @click="navigatorTo">
-    <div class="title-area">
-      <img class="title-img lazyload" src="" :data-src="article.headpic ? article.headpic : defaultImg" alt="">
+  <div class="article" @click="navigatorTo">
+    <div class="title-area" :style="'background-image:url(' + (article.headpic ? article.headpic : defaultImg) + ')'">
       <h2 class="title" v-text="article.title"></h2>
     </div>
     <div class="article-content">
@@ -11,11 +10,11 @@
       <p>SANSIRO</p>
       <p>{{ calcArticleTime(article.time) }}</p>
     </div>
-  </a>
+  </div>
 </template>
 
 <script>
-import {calcTime, setLazyLoadImg} from '@/utils/public';
+import {calcTime, setLazyLoadImg} from '@u/public';
 
 export default {
   name: 'articleList',
@@ -66,6 +65,7 @@ export default {
   color: inherit;
   @extend %box;
   overflow: hidden;
+  cursor: pointer;
 
   .title-area {
     position: relative;
@@ -74,21 +74,15 @@ export default {
     height: 100px;
     padding-left: 20px;
     padding-bottom: 14px;
-    background-color: #eee;
+    background-color: rgb(208, 208, 208);
     box-sizing: border-box;
     align-items: flex-end;
     justify-content: flex-start;
     overflow: hidden;
 
-    .title-img {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      height: auto;
-      z-index: 3;
-    }
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 
     .title {
       position: relative;
@@ -96,6 +90,7 @@ export default {
       font-weight: 450;
       text-shadow: 1px 1px 8px #444;
       z-index: 4;
+      @extend %text-overflow;
     }
   }
 

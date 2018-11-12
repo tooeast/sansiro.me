@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import WriteMessage from '@/components/WriteMessage'
-import EachMsg from '@/components/EachMsg'
-import LoadMore from '@/components/LoadMore'
-import Loading from '@/components/Loading'
+import Header from '@c/Header'
+import WriteMessage from '@c/WriteMessage'
+import EachMsg from '@c/EachMsg'
+import LoadMore from '@c/LoadMore'
+import Loading from '@c/Loading'
 
-import {calcTime, htmlDecode, posTop, setLazyLoadImg} from '@/utils/public'
+import {calcTime, htmlDecode, posTop, setLazyLoadImg} from '@u/public'
 
 export default {
   name: 'messageBoard',
@@ -62,8 +62,6 @@ export default {
   },
   methods: {
     childSuccess (params) {
-      console.log("This is from child!---", params);
-
       this.msgList = [params, ...this.msgList];
     },
     getMessageBoardInfo () {
@@ -75,8 +73,6 @@ export default {
         })
     },
     replayUser (name) {
-      console.log("name:", name);
-      
       this.$refs.write.addReplayName(name);
     },
     addToList (data) {

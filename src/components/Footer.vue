@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ScrollTop from '@/components/ScrollTop'
+import ScrollTop from '@c/ScrollTop'
 
 export default {
   name: 'bottom',

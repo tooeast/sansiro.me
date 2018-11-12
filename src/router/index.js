@@ -3,11 +3,11 @@ import Router from 'vue-router'
 
 Vue.use(Router);
 
-import home from '@/client/Home'
-import article from '@/client/Article'
-import error from '@/client/404'
-import about from '@/client/About'
-import board from '@/client/Board'
+import home from '@p/Home'
+import article from '@p/Article'
+import error from '@p/404'
+import about from '@p/About'
+import board from '@p/Board'
 
 export default new Router({
   mode: 'history',

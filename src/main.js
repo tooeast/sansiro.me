@@ -1,18 +1,16 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './client/App'
+import App from '@p/App'
 import router from './router'
 import axios from 'axios'
 
 import vdialog from 'vue-toast-confirm'
-
-// Vue.prototype.$dialog = dialog
+import vpicture from './libs/vpicture'
 Vue.use(vdialog)
 
-Vue.prototype.$http = axios;
+Vue.use(vpicture)
 
-// Vue.prototype.calcTime = calcTime;
+
+Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
 

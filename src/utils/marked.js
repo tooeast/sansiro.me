@@ -897,7 +897,7 @@ Renderer.prototype.image = function(href, title, text) {
   if (this.options.baseUrl && !originIndependentUrl.test(href)) {
     href = resolveUrl(this.options.baseUrl, href);
   }
-  var out = '<img class="lazyload" src="" data-src="' + href + '" alt="' + text + '"';
+  var out = `<img class="lazyload clickable" src="" data-src="${href}" style="width:${text}px"`;
   if (title) {
     out += ' title="' + title + '"';
   }

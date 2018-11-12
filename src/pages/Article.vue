@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import Loading from '@/components/Loading'
-import {calcTime, htmlDecode, setLazyLoadImg, posTop} from '@/utils/public'
-import hljs from '@/utils/highlight'
-import marked from '@/utils/marked'
+import Header from '@c/Header'
+import Loading from '@c/Loading'
+import {calcTime, htmlDecode, setLazyLoadImg, posTop} from '@u/public'
+import hljs from '@u/highlight'
+import marked from '@u/marked'
 
 export default {
   name: 'articlePage',
@@ -41,12 +41,22 @@ export default {
 
     this.setMarkDown();
     this.getArticleInfo(this.$route.params.name);
+
+
+    // this.$show();
+
   },
   computed: {
     complieMarkeDown () {
-      return marked(htmlDecode(this.article.content), {
+      let res = marked(htmlDecode(this.article.content), {
         sanitize: true
       })
+
+      setTimeout(() => {
+        this.clickPicture();
+      }, 0)
+
+      return res;
     }
   },
   methods: {
@@ -79,16 +89,35 @@ export default {
           return hljs.highlightAuto(code).value
         }
       });
+    },
+    clickPicture () {
+      console.log("clicklcick")
+      let imgs = document.getElementsByClassName('clickable');
+      // let imgs = this.$refs.clickable;
+
+      console.log(imgs);
+      console.log(imgs.length)
+
+      // imgs.map(img => {
+      for(let img of imgs) {
+        img.onclick = () => {
+          console.log("s");
+          this.$show({
+            url: img.dataset.src
+          })
+        }
+      }
+    },
+    showBigPicture () {
+      console.log("okokokokookok")
     }
   }
 }
 </script>
 
-<style lang="css" scoped>
-@import url('~@/assets/mixin/markdown.css');
-</style>
-
 <style lang="scss" scoped>
+@import url('~@/assets/mixin/markdown.scss');
+
 @media screen and (max-width: 480px) {
   .article-area {
     padding: 0;

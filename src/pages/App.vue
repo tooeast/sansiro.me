@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import Footer from '@/components/Footer'
-import SideMenu from '@/components/SideMenu'
+import Footer from '@c/Footer'
+import SideMenu from '@c/SideMenu'
 
 export default {
   name: 'App',
@@ -59,6 +59,13 @@ body {
       width: 100%;
       height: 100%;
       @include bgimg('~@/assets/images/mainbg.jpg');
+
+
+      // width: 120%;
+      // height: 120%;
+      // transform: translate(-10%, -10%);
+      // @include bgimg('~@/assets/images/bg1.jpg');
+      // filter: blur(100px);
     }
   }
 

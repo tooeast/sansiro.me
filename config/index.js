@@ -13,7 +13,6 @@ module.exports = {
     proxyTable: {
       '/api': {
           target: 'http://api.sansiro.com/api',
-          secure: false,
           changeOrigin: true
       }
     },

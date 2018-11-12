@@ -21,7 +21,7 @@
 
 <script>
 import qs from 'qs';
-import { trim, htmlEncode } from '@/utils/public'
+import { trim, htmlEncode } from '@u/public'
 
 const CATCHKEY = 'MC2xhj18c1jGSA';
 
@@ -160,7 +160,7 @@ export default {
         }
       }
 
-      this.$http.get(`https://sansiro.me/nodeapi/about/${this.name}`)
+      this.$http.get(`/nodeapi/about/${this.name}`)
         .then(data => {
           console.log(data);
           this.avatarUrl = data.data;

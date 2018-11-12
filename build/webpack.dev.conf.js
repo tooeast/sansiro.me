@@ -43,9 +43,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       '/api': {
         target: 'http://api.sansiro.me',
         changeOrigin: true,
-        // pathRewrite: {
-        //   '^/api': '/api'
-        // }
+      },
+      '/nodeapi': {
+        target: 'http://node.sansiro.me',
+        pathRewrite: {
+          '^/nodeapi': ''
+        },
+        changeOrigin: true,
       }
     },
     quiet: true, // necessary for FriendlyErrorsPlugin

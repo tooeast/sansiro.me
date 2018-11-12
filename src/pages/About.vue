@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import Loading from '@/components/Loading'
-import {calcTime, htmlDecode, posTop, setLazyLoadImg} from '@/utils/public'
-import hljs from '@/utils/highlight'
-import marked from '@/utils/marked'
+import Header from '@c/Header'
+import Loading from '@c/Loading'
+import {calcTime, htmlDecode, posTop, setLazyLoadImg} from '@u/public'
+import hljs from '@u/highlight'
+import marked from '@u/marked'
 
 export default {
   name: 'about',
@@ -82,11 +82,9 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
-@import url('~@/assets/mixin/markdown.css');
-</style>
-
 <style lang="scss" scoped>
+@import url('~@/assets/mixin/markdown.scss');
+
 @media screen and (max-width: 480px) {
   .article-area {
     padding: 0;

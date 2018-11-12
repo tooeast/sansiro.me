@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import Header from '@/components/Header'
-import Loading from '@/components/Loading'
-import LoadMore from '@/components/LoadMore'
-import ArticleList from '@/components/ArticleList'
+import Header from '@c/Header'
+import Loading from '@c/Loading'
+import LoadMore from '@c/LoadMore'
+import ArticleList from '@c/ArticleList'
 
 export default {
   name: 'Home',
