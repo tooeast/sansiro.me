@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <div id="top"></div>
     <div class="main-bg">
       <div class="bg-img"></div>
     </div>
     <div class="main-area">
-      <router-view class="main"></router-view>
+      
+      <keep-alive max="2">
+        <router-view v-if="$route.meta.keepAlive !== false" class="main"></router-view>
+      </keep-alive>
+      <router-view v-if="$route.meta.keepAlive === false" class="main"></router-view>
+
       <Footer></Footer>
       <side-menu></side-menu>
     </div>

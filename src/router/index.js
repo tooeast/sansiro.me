@@ -18,24 +18,36 @@ export default new Router({
     },
     {
       path: '/home',
-      redirect: '/'
+      redirect: '/',
     },
     {
       path: '/',
-      component: home
+      component: home,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/about',
-      component: about
+      component: about,
+      meta: {
+        keepAlive: false
+      }
     },
     {
       path: '/msgbd',
-      component: board
+      component: board,
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/article/:name',
       name: 'article',
-      component: article
+      component: article,
+      meta: {
+        keepAlive: false
+      }
     }
   ]
 })
