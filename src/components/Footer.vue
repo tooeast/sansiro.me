@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="each center">
-      <p>Copyright ©  2018  SANSIRO.ME</p>
+      <p>Copyright © 2017-2019 sansiro.me</p>
       <p>晋ICP备17008841号</p>
     </div>
     <div class="each right">

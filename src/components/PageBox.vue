@@ -1,7 +1,12 @@
 <template>
   <section class="page-area">
     <div class="page">
-      <slot></slot>
+      <div class="white-bg" id="save-pic">
+        <slot></slot>
+        <slot name="article-bottom"></slot>
+      </div>
+
+      <slot name="page-bottom"></slot>
     </div>
 
     <slot name="other"></slot>
@@ -42,12 +47,19 @@
   margin: 0 auto;
 
   .page {
-    background-color: #fff;
-    @extend %box;
+
+    .white-bg {
+      background-color: #fff;
+      @extend %box;
+    }
   }
 }
 
 .bottom {
   height: 120px;
+}
+
+.qq {
+  background: yellow;
 }
 </style>

@@ -20,4 +20,12 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    to.meta.title == 'xx' && (to.meta.title = window.articleInfo.title);
+    document.title = 'SANSIRO.ME － ' + to.meta.title;
+  }
+  next();
 })

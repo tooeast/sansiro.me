@@ -24,21 +24,24 @@ export default new Router({
       path: '/',
       component: home,
       meta: {
-        keepAlive: true
+        keepAlive: true,
+        title: '我的圣西罗 ｜ 个人博客'
       }
     },
     {
       path: '/about',
       component: about,
       meta: {
-        keepAlive: false
+        keepAlive: false,
+        title: '关于'
       }
     },
     {
       path: '/msgbd',
       component: board,
       meta: {
-        keepAlive: true
+        keepAlive: true,
+        title: '留言板'
       }
     },
     {
@@ -46,8 +49,9 @@ export default new Router({
       name: 'article',
       component: article,
       meta: {
-        keepAlive: false
+        keepAlive: false,
+        title: 'xx'
       }
     }
   ]
-})
+});

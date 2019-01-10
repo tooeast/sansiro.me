@@ -30,7 +30,7 @@ export default {
   position: relative;
   width: 36px;
   height: 36px;
-  background-color: #757575;
+  background-color: #2c3e50;
   border-radius: 50%;
   box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 3px 3px 0 rgba(0,0,0,.24);
   cursor: pointer;

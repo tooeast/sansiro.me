@@ -23,6 +23,8 @@ import {calcTime, htmlDecode, setLazyLoadImg, posTop} from '@u/public'
 import hljs from '@u/highlight'
 import marked from '@u/marked'
 
+import domtoimage from 'dom-to-image'
+
 export default {
   name: 'articlePage',
   components: {
@@ -90,25 +92,14 @@ export default {
       });
     },
     clickPicture () {
-      console.log("clicklcick")
       let imgs = document.getElementsByClassName('clickable');
-      // let imgs = this.$refs.clickable;
-
-      console.log(imgs);
-      console.log(imgs.length)
-
-      // imgs.map(img => {
       for(let img of imgs) {
         img.onclick = () => {
-          console.log("s");
           this.$show({
             url: img.dataset.src
           })
         }
       }
-    },
-    showBigPicture () {
-      console.log("okokokokookok")
     }
   }
 }
