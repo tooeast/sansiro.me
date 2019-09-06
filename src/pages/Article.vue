@@ -2,7 +2,7 @@
   <page-box>
     <Header :title="article.title" :img="article.headpic"></Header>
     <div class="my-info">
-      <img src="https://sansiro.me/images/default-head.jpg" alt="">
+      <img src="//59.110.213.152/cdn/images/default-head.jpg" alt="">
       <p>{{ calcArticleTime(article.time) }}</p>
     </div>
     <div class="main-area">
@@ -38,14 +38,12 @@ export default {
   },
   mounted () {
     posTop();
-    setLazyLoadImg();
 
     this.setMarkDown();
-    this.getArticleInfo(this.$route.params.name);
+    this.getArticleInfo(this.$route.params.name).then(() => {
 
-
-    // this.$show();
-
+      setLazyLoadImg();
+    });
   },
   computed: {
     complieMarkeDown () {
@@ -62,16 +60,20 @@ export default {
   },
   methods: {
     getArticleInfo (name) {
-      this.$http.get(`/api/article?index=${name}`)
-        .then(data => {
-          if(data.data.code == 0) {
-            this.article = data.data.data;
+      return new Promise((res, rej) => {
+        this.$http.get(`/api/article?index=${name}`)
+          .then(data => {
+            this.article = data.data;
 
             this.showArticle = true;
-          } else {
-            this.$router.push('/error')
-          }
-        })
+
+            res();
+          }).catch(msh => {
+            this.$router.push('/error');
+
+            rej();
+          })
+      })
     },
     calcArticleTime (time) {
       return calcTime(time);

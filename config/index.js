@@ -11,10 +11,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-          target: 'http://api.sansiro.com/api',
-          changeOrigin: true
-      }
+      '/blog_api': {
+        target: 'http://api.521plus.com',
+        changeOrigin: true,
+      },
     },
 
     // Various Dev Server settings

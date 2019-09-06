@@ -38,20 +38,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       ? { warnings: false, errors: true }
       : false,
     publicPath: config.dev.assetsPublicPath,
-    // proxy: config.dev.proxyTable,
-    proxy: {
-      '/api': {
-        target: 'http://api.sansiro.me',
-        changeOrigin: true,
-      },
-      '/nodeapi': {
-        target: 'http://node.sansiro.me',
-        pathRewrite: {
-          '^/nodeapi': ''
-        },
-        changeOrigin: true,
-      }
-    },
+    proxy: config.dev.proxyTable,
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://api.521plus.com',
+    //     changeOrigin: true,
+    //   },
+    //   '/nodeapi': {
+    //     target: 'http://node.sansiro.me',
+    //     pathRewrite: {
+    //       '^/nodeapi': ''
+    //     },
+    //     changeOrigin: true,
+    //   }
+    // },
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,

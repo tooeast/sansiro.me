@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "dom-to-image": "^2.6.0",
     "git": "^0.1.5",
     "qs": "^6.5.2",
     "vue": "^2.5.2"

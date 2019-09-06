@@ -160,9 +160,9 @@ export default {
         }
       }
 
-      this.$http.get(`/nodeapi/about/${this.name}`)
+      this.$http.get(`/api/message/getAvatar?name=${this.name}`)
         .then(data => {
-          console.log(data);
+          console.log(data.data);
           this.avatarUrl = data.data;
         })
     }

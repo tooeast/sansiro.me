@@ -31,16 +31,12 @@ export default {
       this.loadmoreState = 1;
       this.$http.get(this.requestUri + "?num=" + this.loadnum)
         .then(data => {
-          if(data.data.code == 0) {
-            
-            this.resultInfoMsg(data.data.data);
+          this.resultInfoMsg(data.data);
 
-            this.loadnum++;
-            this.loadmoreState = 0;
-          }
-          else {
-            this.loadmoreState = 2;
-          }
+          this.loadnum++;
+          this.loadmoreState = 0;
+        }).catch(msg => {
+          this.loadmoreState = 2;
         })
     },
     resultInfoMsg (data) {

@@ -3,7 +3,7 @@
     <div class="area">
       <Header :title="msg"></Header>
       <div class="my-info">
-        <img src="https://sansiro.me/images/default-head.jpg" alt="">
+        <img src="//59.110.213.152/cdn/images/default-head.jpg" alt="">
         <p>SANSIRO.ME</p>
       </div>
     </div>
@@ -45,8 +45,8 @@ export default {
   },
   methods: {
     getHomePageInfo() {
-      this.$http.get('/api/home')
-        .then((data) => {
+      this.$http.get('/blog_api/site/Site/getHomeList')
+        .then(data => {
           this.articleList = data.data;
 
           this.showList = true;

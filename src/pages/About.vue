@@ -1,9 +1,9 @@
 <template>
   <page-box>
     <Header :title="title"></Header>
-    <loading v-if="!showInfo"></loading>
 
     <div class="main-area">
+      <loading v-if="!showInfo"></loading>
       <transition name="fade">
         <page-padding class="article-body markdown-body" v-html="complieMarkeDown" v-show="showInfo"></page-padding>
       </transition>
@@ -27,17 +27,18 @@ export default {
   },
   data () {
     return {
-      title: 'About',
+      title: 'About me',
       content: '',
       showInfo: false,
     }
   },
   mounted () {
     posTop();
-    setLazyLoadImg();
 
-    this.getMyOwnInfo();
     this.setMarkDown();
+    this.getMyOwnInfo().then(() => {
+      setLazyLoadImg();
+    });
   },
   computed: {
     complieMarkeDown () {
@@ -48,19 +49,22 @@ export default {
   },
   methods: {
     getMyOwnInfo (name) {
-      this.$http.get(`/api/about`)
-        .then(data => {
-          if(data.data.code == 0) {
-            this.title = data.data.data.title;
-            this.content = data.data.data.content;
-
-            Object.assign(this, data.data.data);
+      return new Promise((res, rej) => {
+        this.$http.get(`/api/about`)
+          .then(data => {
+            this.content = data.data.content;
 
             this.showInfo = true;
-          } else {
-            // this.$router.push('/error')
+            res();
+          }).catch(msg => {
+            this.$toast({
+              msg: '请求失败！',
+              type: 'error'
+            });
+            rej();
           }
-        })
+        )
+      })
     },
     setMarkDown () {
       marked.setOptions({
@@ -112,5 +116,9 @@ export default {
     font-size: 16px;
     text-shadow: 1px 1px 8px #bababa;
   }
+}
+
+.main-area {
+  min-height: 260px;
 }
 </style>

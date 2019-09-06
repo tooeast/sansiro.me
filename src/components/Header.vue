@@ -9,7 +9,7 @@ export default {
   name: 'areaTop',
   data () {
     return {
-      defaultImg: '//cdn.sansiro.me/images/efc66fa6f7a2a3e63c9e7a2c01e6ef12-img2.png'
+      defaultImg: '//59.110.213.152/cdn/images/efc66fa6f7a2a3e63c9e7a2c01e6ef12-img2.png'
     }
   },
   props: {

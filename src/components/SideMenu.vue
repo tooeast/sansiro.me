@@ -3,7 +3,7 @@
     <div class="mask" @click="hideSideMenu"></div>
     <div class="side-area">
       <div class="header">
-        <img src="https://sansiro.me/images/default-head.jpg" alt="">
+        <img src="//59.110.213.152/cdn/images/default-head.jpg" alt="">
         <p>sansiro.me@outlook.com</p>
       </div>
       <div class="main">
@@ -18,7 +18,10 @@
             <router-link class="link icon-message_board" :to="{ path: '/msgbd' }">Message Board</router-link>
           </li>
           <li>
-            <a class="link icon-github" href="https://github.com/sansiro-me">Github</a>
+            <a class="link icon-photo" target="_blank" href="http://works.sansiro.me">Works</a>
+          </li>
+          <li>
+            <a class="link icon-github" target="_blank" href="https://github.com/sansiro-me">Github</a>
           </li>
         </ul>
       </div>
