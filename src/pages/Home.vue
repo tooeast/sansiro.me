@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <div class="area">
-      <Header :title="msg"></Header>
+      <Header :title="msg" :img="backimg"></Header>
       <div class="my-info">
-        <img src="//59.110.213.152/cdn/images/default-head.jpg" alt="">
-        <p>SANSIRO.ME</p>
+        <img :src="avatar" alt="">
+        <p>{{ username }}</p>
       </div>
     </div>
 
@@ -37,17 +37,23 @@ export default {
     return {
       msg: 'Welcome to sansiro.me',
       showList: false,
-      articleList: []
+      articleList: [],
+      backimg: '',
+      avatar: '',
+      username: ''
     }
   },
-  mounted () {
+  activated () {
     this.getHomePageInfo();
   },
   methods: {
     getHomePageInfo() {
-      this.$http.get('/blog_api/site/Site/getHomeList')
+      this.$http.get('/blog_api/site/Site/getHomeInfo')
         .then(data => {
-          this.articleList = data.data;
+          this.articleList = data.list;
+          this.backimg = data.backimg;
+          this.avatar = data.avatar;
+          this.username = data.username
 
           this.showList = true;
         })

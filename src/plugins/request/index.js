@@ -21,7 +21,7 @@ const request = {
         data = data.data
 
         if (data.code >= 0) {
-          resolve(data)
+          resolve(data.data)
         } else {
           reject(data.msg)
         }
